@@ -2,24 +2,24 @@ package com.mtn.pruebasex.service;
 
 import com.mtn.pruebasex.model.Alumno;
 import com.mtn.pruebasex.repository.AlumnoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
+@AllArgsConstructor
 @Service
 public class AlumnoService {
 
-    @Autowired
-    private AlumnoRepository alumnoRepository;
+
+    private final AlumnoRepository alumnoRepository;
 
     public List<Alumno> getAllAlumnos() {
         return alumnoRepository.findAll();
     }
 
-    public Optional<Alumno> getAlumnoById(Long id) {
-        return alumnoRepository.findById(id);
+    public Alumno getAlumnoById(Long id) {
+        return alumnoRepository.findById(id).get();
     }
 
     public Alumno saveAlumno(Alumno alumno) {
